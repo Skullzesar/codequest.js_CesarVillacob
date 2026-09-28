@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeQuest English — Learn to Code in English</title>
+<meta name="description" content="Learn programming basics and English vocabulary through interactive games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <button class="brand" type="button" aria-label="Go to home screen">
+    <span class="brand-dot"></span>
+    <span class="brand-name">codequest<span class="brand-accent">.js</span></span>
+  </button>
+  <div class="xp-badge" aria-live="polite">
+    <span class="xp-bolt">⚡</span> <span id="nav-xp">0</span> XP
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HOME ============ -->
+  <section class="view active" id="view-home">
+
+    <div class="terminal-window">
+      <div class="terminal-bar">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        <span class="terminal-title">codequest.js — English Edition</span>
+      </div>
+      <div class="terminal-body">
+        <p class="terminal-line">&gt; <span id="typewriter"></span><span class="cursor" aria-hidden="true">▌</span></p>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-label">Total XP</span>
+        <span class="status-value" id="stat-xp">0</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Level</span>
+        <span class="status-value" id="stat-level">Rookie Coder</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Completed</span>
+        <span class="status-value" id="stat-completed">0/4</span>
+      </div>
+    </div>
+
+    <h2 class="section-heading">Choose your challenge</h2>
+
+    <div class="game-grid">
+
+      <article class="game-card" data-accent="variables">
+        <div class="card-top">
+          <span class="card-icon">🔐</span>
+          <span class="card-status" id="status-variables">Not started</span>
+        </div>
+        <h3>Variable Vault</h3>
+        <p>Match each line of code to the data type it stores.</p>
+        <div class="card-progress"><div class="card-progress-fill" id="cardfill-variables"></div></div>
+        <div class="card-footer">
+          <span class="card-topic">variables · data types</span>
+          <button class="btn-play" data-play="variables" type="button">Play</button>
+        </div>
+      </article>
+
+      <article class="game-card" data-accent="conditionals">
+        <div class="card-top">
+          <span class="card-icon">🏝️</span>
+          <span class="card-status" id="status-conditionals">Not started</span>
+        </div>
+        <h3>If/Else Island</h3>
+        <p>Read the code, predict the output, cross the bridges.</p>
+        <div class="card-progress"><div class="card-progress-fill" id="cardfill-conditionals"></div></div>
+        <div class="card-footer">
+          <span class="card-topic">conditionals · logic</span>
+          <button class="btn-play" data-play="conditionals" type="button">Play</button>
+        </div>
+      </article>
+
+      <article class="game-card" data-accent="loops">
+        <div class="card-top">
+          <span class="card-icon">🏁</span>
+          <span class="card-status" id="status-loops">Not started</span>
+        </div>
+        <h3>Loop Runner</h3>
+        <p>Predict what each loop does and race to the finish line.</p>
+        <div class="card-progress"><div class="card-progress-fill" id="cardfill-loops"></div></div>
+        <div class="card-footer">
+          <span class="card-topic">loops · iteration</span>
+          <button class="btn-play" data-play="loops" type="button">Play</button>
+        </div>
+      </article>
+
+      <article class="game-card" data-accent="functions">
+        <div class="card-top">
+          <span class="card-icon">🏭</span>
+          <span class="card-status" id="status-functions">Not started</span>
+        </div>
+        <h3>Function Factory</h3>
+        <p>Assemble functions piece by piece, then predict the result.</p>
+        <div class="card-progress"><div class="card-progress-fill" id="cardfill-functions"></div></div>
+        <div class="card-footer">
+          <span class="card-topic">functions · parameters</span>
+          <button class="btn-play" data-play="functions" type="button">Play</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ GAME: VARIABLES ============ -->
+  <section class="view" id="view-variables" data-game="variables">
+    <div class="game-topbar">
+      <button class="btn-back" data-back type="button">← Back</button>
+      <h2><span class="game-icon">🔐</span> Variable Vault</h2>
+      <button class="btn-vocab" data-vocab="variables" type="button">📖 Vocabulary</button>
+    </div>
+    <p class="instructions">// A variable is a container that stores a value. Click a line of code, then click the data type you think matches it. Match all 5 pairs to unlock the vault.</p>
+    <div class="game-readout">
+      <span>Score: <strong id="score-variables">0</strong></span>
+      <span id="label-variables">Matched 0 of 5</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-variables"></div></div>
+    <div class="game-content" id="content-variables"></div>
+    <div class="console" id="console-variables"><p class="console-line">&gt; Ready when you are.</p></div>
+    <div class="complete-card" id="complete-variables" hidden>
+      <h3>🎉 Vault unlocked!</h3>
+      <p>You scored <strong id="finalscore-variables">0</strong> points.</p>
+      <div class="vocab-recap" id="recap-variables"></div>
+      <div class="complete-actions">
+        <button class="btn-primary" data-replay="variables" type="button">Play again</button>
+        <button class="btn-secondary" data-back type="button">Back to home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GAME: CONDITIONALS ============ -->
+  <section class="view" id="view-conditionals" data-game="conditionals">
+    <div class="game-topbar">
+      <button class="btn-back" data-back type="button">← Back</button>
+      <h2><span class="game-icon">🏝️</span> If/Else Island</h2>
+      <button class="btn-vocab" data-vocab="conditionals" type="button">📖 Vocabulary</button>
+    </div>
+    <p class="instructions">// Conditionals let code make decisions. Read each snippet, predict what it prints, and choose the right answer to cross the island.</p>
+    <div class="game-readout">
+      <span>Score: <strong id="score-conditionals">0</strong></span>
+      <span id="label-conditionals">Question 1 of 6</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-conditionals"></div></div>
+    <div class="game-content" id="content-conditionals"></div>
+    <div class="console" id="console-conditionals"><p class="console-line">&gt; Ready when you are.</p></div>
+    <div class="complete-card" id="complete-conditionals" hidden>
+      <h3>🎉 You crossed the island!</h3>
+      <p>You scored <strong id="finalscore-conditionals">0</strong> points.</p>
+      <div class="vocab-recap" id="recap-conditionals"></div>
+      <div class="complete-actions">
+        <button class="btn-primary" data-replay="conditionals" type="button">Play again</button>
+        <button class="btn-secondary" data-back type="button">Back to home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GAME: LOOPS ============ -->
+  <section class="view" id="view-loops" data-game="loops">
+    <div class="game-topbar">
+      <button class="btn-back" data-back type="button">← Back</button>
+      <h2><span class="game-icon">🏁</span> Loop Runner</h2>
+      <button class="btn-vocab" data-vocab="loops" type="button">📖 Vocabulary</button>
+    </div>
+    <p class="instructions">// Loops repeat code automatically. Predict what each loop does and help the runner reach the finish line.</p>
+    <div class="game-readout">
+      <span>Score: <strong id="score-loops">0</strong></span>
+      <span id="label-loops">Question 1 of 6</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-loops"></div></div>
+    <div class="runner-track" id="runner-track" aria-hidden="true">
+      <span class="track-line"></span>
+      <span class="runner-emoji" id="runner-icon">🏃</span>
+      <span class="finish-flag">🏁</span>
+    </div>
+    <div class="game-content" id="content-loops"></div>
+    <div class="console" id="console-loops"><p class="console-line">&gt; Ready when you are.</p></div>
+    <div class="complete-card" id="complete-loops" hidden>
+      <h3>🎉 You reached the finish line!</h3>
+      <p>You scored <strong id="finalscore-loops">0</strong> points.</p>
+      <div class="vocab-recap" id="recap-loops"></div>
+      <div class="complete-actions">
+        <button class="btn-primary" data-replay="loops" type="button">Play again</button>
+        <button class="btn-secondary" data-back type="button">Back to home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GAME: FUNCTIONS ============ -->
+  <section class="view" id="view-functions" data-game="functions">
+    <div class="game-topbar">
+      <button class="btn-back" data-back type="button">← Back</button>
+      <h2><span class="game-icon">🏭</span> Function Factory</h2>
+      <button class="btn-vocab" data-vocab="functions" type="button">📖 Vocabulary</button>
+    </div>
+    <p class="instructions">// Functions are reusable blocks of code. Click the pieces in the right order to build each function, then predict what it returns.</p>
+    <div class="game-readout">
+      <span>Score: <strong id="score-functions">0</strong></span>
+      <span id="label-functions">Round 1 of 3</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-functions"></div></div>
+    <div class="game-content" id="content-functions"></div>
+    <div class="console" id="console-functions"><p class="console-line">&gt; Ready when you are.</p></div>
+    <div class="complete-card" id="complete-functions" hidden>
+      <h3>🎉 Factory complete!</h3>
+      <p>You scored <strong id="finalscore-functions">0</strong> points.</p>
+      <div class="vocab-recap" id="recap-functions"></div>
+      <div class="complete-actions">
+        <button class="btn-primary" data-replay="functions" type="button">Play again</button>
+        <button class="btn-secondary" data-back type="button">Back to home</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal-overlay" id="vocab-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="vocab-modal-title">
+    <div class="modal-header">
+      <h3 id="vocab-modal-title">Vocabulary</h3>
+      <button class="btn-close" id="vocab-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <dl class="vocab-list" id="vocab-modal-list"></dl>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>Built for learning to code — and English — one game at a time.</p>
+  <button class="btn-ghost" id="reset-progress" type="button">Reset progress</button>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
